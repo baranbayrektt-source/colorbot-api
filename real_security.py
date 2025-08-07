@@ -37,7 +37,8 @@ class RealSecurityManager:
         ]
         
         self.allocated_memory = []
-            def enable_real_protection(self) -> bool:
+    
+    def enable_real_protection(self) -> bool:
         try:
             print("🛡️ Enabling REAL Security Protection...")
             
@@ -96,7 +97,8 @@ class RealSecurityManager:
             
         except Exception:
             pass
-                def _allocate_decoy_memory(self):
+    
+    def _allocate_decoy_memory(self):
         try:
             for i in range(10):
                 size = random.randint(4096, 16384)
@@ -155,7 +157,8 @@ class RealSecurityManager:
         thread = threading.Thread(target=network_monitor, daemon=True)
         thread.start()
         self.monitoring_threads.append(thread)
-            def _mask_system_info(self):
+    
+    def _mask_system_info(self):
         try:
             self.fake_system_info = {
                 'cpu_model': f"Intel(R) Core(TM) i{random.choice([5,7,9])}-{random.randint(8000,12000)}K",
