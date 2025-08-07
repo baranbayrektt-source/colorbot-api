@@ -155,3 +155,66 @@ class RealSecurityManager:
         thread = threading.Thread(target=network_monitor, daemon=True)
         thread.start()
         self.monitoring_threads.append(thread)
+            def _mask_system_info(self):
+        try:
+            self.fake_system_info = {
+                'cpu_model': f"Intel(R) Core(TM) i{random.choice([5,7,9])}-{random.randint(8000,12000)}K",
+                'total_ram': random.choice([8, 16, 32]) * 1024**3,
+                'gpu_model': random.choice([
+                    'NVIDIA GeForce RTX 4070',
+                    'NVIDIA GeForce RTX 4060',
+                    'AMD Radeon RX 7800 XT'
+                ])
+            }
+        except Exception:
+            pass
+    
+    def _enable_debugger_detection(self):
+        def debugger_check():
+            while self.is_protected:
+                try:
+                    kernel32 = ctypes.windll.kernel32
+                    if kernel32.IsDebuggerPresent():
+                        print("🚨 Debugger detected!")
+                        self._emergency_shutdown()
+                    
+                    debug_flag = ctypes.c_bool()
+                    if kernel32.CheckRemoteDebuggerPresent(
+                        kernel32.GetCurrentProcess(),
+                        ctypes.byref(debug_flag)
+                    ) and debug_flag.value:
+                        print("🚨 Remote debugger detected!")
+                        self._emergency_shutdown()
+                    
+                    time.sleep(2.0)
+                except:
+                    time.sleep(1.0)
+        
+        thread = threading.Thread(target=debugger_check, daemon=True)
+        thread.start()
+        self.monitoring_threads.append(thread)
+    
+    def _emergency_shutdown(self):
+        for mem_addr in self.allocated_memory:
+            try:
+                ctypes.windll.kernel32.VirtualFree(mem_addr, 0, 0x8000)
+            except:
+                pass
+        self.allocated_memory.clear()
+        
+        self.is_protected = False
+        os._exit(0)
+
+# Global instance
+real_security = RealSecurityManager()
+
+def initialize_real_security():
+    return real_security.enable_real_protection()
+
+def check_real_environment():
+    processes = {p.info['name'].lower() for p in psutil.process_iter(['name'])}
+    threats = []
+    for category, threat_list in real_security.threat_processes.items():
+        if any(threat.lower() in processes for threat in threat_list):
+            threats.append(category)
+    return len(threats) == 0
