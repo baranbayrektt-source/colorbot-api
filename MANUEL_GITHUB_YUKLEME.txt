@@ -1,0 +1,79 @@
+📤 MANUEL GITHUB YÜKLEME KILAVUZU
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 GITHUB ACTIONS KURULUMU
+
+Git kurulu olmadığı için manuel olarak GitHub'a yükleyeceğiz.
+
+📋 ADIM ADIM YÜKLEME:
+
+1️⃣ GITHUB REPOSITORY:
+   - https://github.com/baranbayrektt-source/colorbot-api
+   - Repository'ye gidin
+
+2️⃣ DOSYA YÜKLEME:
+   - "Add file" > "Upload files" tıklayın
+   - Tüm ColorBot klasörünü sürükleyin
+   - Commit message: "QUARXV1 GitHub Actions Build System"
+   - "Commit changes" tıklayın
+
+3️⃣ GITHUB ACTIONS TETIKLEME:
+   - Actions sekmesine gidin
+   - "Build QUARXV1" workflow'unu seçin
+   - "Run workflow" butonuna tıklayın
+   - Branch: main
+   - "Run workflow" ile başlatın
+
+4️⃣ BUILD İZLEME:
+   - Build durumunu takip edin
+   - Süre: 5-10 dakika
+   - Yeşil tik = başarılı
+
+5️⃣ DOWNLOAD:
+   - Build tamamlandığında
+   - "Artifacts" > "QUARXV1-Setup"
+   - "Download" ile ZIP indirin
+
+📁 YÜKLENECEK DOSYALAR:
+
+✅ .github/workflows/build.yml
+✅ main.py
+✅ create_icon.py
+✅ requirements.txt
+✅ README.txt
+✅ KURULUM_KILAVUZU.txt
+✅ GUVENLIK_REHBERI.txt
+✅ quarxv1.ico
+✅ Tüm diğer dosyalar
+
+🔧 GITHUB ACTIONS ÖZELLİKLERİ:
+
+• Otomatik Python 3.11 kurulumu
+• PyInstaller ile EXE oluşturma
+• Icon oluşturma
+• Dependency installation
+• Artifact packaging
+• Release management
+• Version tagging
+
+⚠️ ÖNEMLİ NOTLAR:
+
+• Tüm dosyaları yükleyin
+• .github klasörü önemli
+• Build süresi 5-10 dakika
+• Ücretsiz GitHub Actions limiti
+• Otomatik versioning
+• Professional release
+
+🎯 SONUÇ:
+
+GitHub Actions kurulduktan sonra:
+- Her push'ta otomatik build
+- Professional packaging
+- Güvenli build environment
+- Otomatik release management
+- Artifact download
+
+═══════════════════════════════════════════════════════════════════════════════
+🎯 QUARXV1 ColorBot - Manual GitHub Setup
+═══════════════════════════════════════════════════════════════════════════════
