@@ -1,0 +1,48 @@
+QUARXV1 ColorBot - Güvenlik Rehberi
+===================================
+
+⚠️ ÖNEMLİ GÜVENLİK BİLGİLERİ
+
+1. Windows Defender / Antivirus Uyarıları
+----------------------------------------
+- Program ilk çalıştırıldığında Windows Defender uyarısı alabilirsiniz
+- Bu normal bir durumdur, programın çalışma mekanizmasından kaynaklanır
+- Geçici çözüm için:
+  a) Windows Defender'ı geçici olarak kapatın
+  b) QUARXV1.exe için istisna ekleyin
+  c) "Daha fazla bilgi" > "Yine de çalıştır" seçeneğini kullanın
+
+2. Yönetici İzinleri
+-------------------
+- QUARXV1.exe'yi her zaman "Yönetici olarak çalıştır"
+- Özellikle ilk kullanımda bu çok önemli
+- Sağ tık > "Yönetici olarak çalıştır" seçeneğini kullanın
+
+3. Dosya Güvenliği
+-----------------
+- QUARXV1.exe'yi güvenli bir konuma kurun (C:\Games\QUARXV1\ önerilen)
+- Dosya boyutunu kontrol edin
+- İkon ve isim doğruluğunu kontrol edin
+- Sadece güvenilir kaynaklardan indirin
+
+4. Lisans Güvenliği
+------------------
+- Lisans anahtarınızı kimseyle paylaşmayın
+- Her anahtar tek bir PC'de çalışır
+- Süresi dolan anahtarlar kullanılamaz
+
+5. Sorun Giderme
+---------------
+- Program açılmazsa:
+  * Yönetici olarak çalıştırın
+  * Antivirus'ü geçici devre dışı bırakın
+  * Windows Defender ayarlarını kontrol edin
+- Lisans hatası:
+  * İnternet bağlantınızı kontrol edin
+  * Lisans süresini kontrol edin
+  * Gerekirse yeni anahtar alın
+
+⚠️ NOT: Bu güvenlik önlemleri programın düzgün çalışması için gereklidir.
+Lütfen tüm adımları dikkatle uygulayın.
+
+QUARXV1 ColorBot - Profesyonel Aim Asistanı
