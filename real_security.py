@@ -96,3 +96,62 @@ class RealSecurityManager:
             
         except Exception:
             pass
+                def _allocate_decoy_memory(self):
+        try:
+            for i in range(10):
+                size = random.randint(4096, 16384)
+                mem_addr = ctypes.windll.kernel32.VirtualAlloc(
+                    None, size, 0x1000, 0x40
+                )
+                if mem_addr:
+                    fake_data = bytearray(size)
+                    for j in range(size):
+                        fake_data[j] = random.randint(0, 255)
+                    ctypes.memmove(mem_addr, fake_data, size)
+                    self.allocated_memory.append(mem_addr)
+        except Exception:
+            pass
+    
+    def _start_process_monitoring(self):
+        def monitor():
+            while self.is_protected:
+                try:
+                    processes = {p.info['name'].lower() for p in psutil.process_iter(['name'])}
+                    for category, threats in self.threat_processes.items():
+                        for threat in threats:
+                            if threat.lower() in processes:
+                                print(f"⚠️ {category} detected!")
+                                self._emergency_shutdown()
+                    time.sleep(3)
+                except:
+                    pass
+                    
+        thread = threading.Thread(target=monitor, daemon=True)
+        thread.start()
+        self.monitoring_threads.append(thread)
+    
+    def _start_network_monitoring(self):
+        def network_monitor():
+            while self.is_protected:
+                try:
+                    connections = psutil.net_connections()
+                    riot_servers = ['104.16.', '172.64.']
+                    
+                    suspicious = 0
+                    for conn in connections:
+                        if conn.raddr and conn.raddr.ip:
+                            for server in riot_servers:
+                                if conn.raddr.ip.startswith(server):
+                                    suspicious += 1
+                    
+                    if suspicious > 3:
+                        print("🌐 Suspicious network activity")
+                        self._emergency_shutdown()
+                    
+                    time.sleep(10.0)
+                except:
+                    time.sleep(5.0)
+        
+        thread = threading.Thread(target=network_monitor, daemon=True)
+        thread.start()
+        self.monitoring_threads.append(thread)
