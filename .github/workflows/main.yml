@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Bu satırı ekle!
     
     steps:
     - name: Checkout code
@@ -34,10 +36,9 @@ jobs:
         
     - name: Copy documentation
       run: |
-        mkdir -p dist
-        cp README.md dist/README.txt
-        cp KURULUM_KILAVUZU.txt dist/
-        cp GUVENLIK_REHBERI.txt dist/
+        cp README.md dist/README.txt || true
+        cp KURULUM_KILAVUZU.txt dist/ || true
+        cp GUVENLIK_REHBERI.txt dist/ || true
         
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -47,6 +48,7 @@ jobs:
         
     - name: Create Release
       uses: softprops/action-gh-release@v1
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
       with:
         files: dist/*
         tag_name: v${{ github.run_number }}
